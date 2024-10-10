@@ -1,21 +1,33 @@
-# WakeonlanHapAccessory
+# HDMIHAPAccessory
 
-**TODO: Add description**
+A simple HAP (Homekit) service to send a WakeOnLan packet to a computer.
 
-## Installation
+## Building
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `wakeonlan_hap_accessory` to your list of dependencies in `mix.exs`:
+- `MIX_ENV=prod mix build`
+- Restart service `sudo systemctl restart wakeonlan_hap_accessory.service`
 
-```elixir
-def deps do
-  [
-    {:wakeonlan_hap_accessory, "~> 0.1.0"}
-  ]
-end
+### Configure
+
+#### Application config
+
+add your MAC and IPC addresses to `bin/config.sh`.
+
+```bash
+export MAC_ADDRESS="xx:xx:xx:xx:xx:xx"
+export IP_ADDRESS="xxx.xxx.xxx.xxx"
+export SECRET_KEY_BASE=xxx
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/wakeonlan_hap_accessory>.
+### Installing service
 
+- Copy service to systemd directory `sudo cp wakeonlan_hap_accessory.service /lib/systemd/system/`
+- Restart systemd `sudo systemctl daemon-reload`
+- Enable service `sudo systemctl enable wakeonlan_hap_accessory.service`
+- And reboot
+
+### Getting the HAP pairing code again
+
+```elixir
+HAP.Display.update_pairing_info_display()
+```
