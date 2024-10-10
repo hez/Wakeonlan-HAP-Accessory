@@ -1,0 +1,11 @@
+[Unit]
+Description=Wakeonlan HAP Service
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/home/pi/wakeonlan_hap_accessory/bin/start.sh
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
