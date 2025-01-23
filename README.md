@@ -1,5 +1,7 @@
 # HDMIHAPAccessory
 
+*This project has been rolled in to https://github.com/hez/homebridge-extra-devices *
+
 A simple HAP (Homekit) service to send a WakeOnLan packet to a computer.
 
 ## Building
